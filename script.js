@@ -24,26 +24,53 @@ window.onload = () => {
           cardTitle.className = "card-title text-truncate";
           cardTitle.innerText = book.title;
 
-          const cardText = document.createElement("p");
-          cardText.className = "card-text text-capitalize";
-          cardText.innerText = book.price + "€";
+          const cardPrice = document.createElement("p");
+          cardPrice.className = "card-text";
+          cardPrice.innerText = book.price + "€";
 
-          const cardBtn = document.createElement("button");
-          cardBtn.className = "btn btn-outline-light";
-          cardBtn.innerText = "Scarta";
+          const cardBtnContainer = document.createElement("div");
+          cardBtnContainer.className = "d-flex justify-content-between";
+
+          const cardBtnRemove = document.createElement("button");
+          cardBtnRemove.className = "btn btn-outline-light";
+          cardBtnRemove.innerText = "Scarta";
+
+          const cardBtnBuy = document.createElement("button");
+          cardBtnBuy.className = "btn btn-outline-light";
+          cardBtnBuy.innerText = "Compra ora";
 
           card.appendChild(cardImg);
           card.appendChild(cardBody);
 
           cardBody.appendChild(cardTitle);
-          cardBody.appendChild(cardText);
-          cardBody.appendChild(cardBtn);
+          cardBody.appendChild(cardPrice);
+
+          cardBtnContainer.appendChild(cardBtnRemove);
+          cardBtnContainer.appendChild(cardBtnBuy);
+
+          cardBody.appendChild(cardBtnContainer);
 
           col.appendChild(card);
           row.appendChild(col);
 
-          cardBtn.addEventListener("click", function (e) {
+          cardBtnRemove.addEventListener("click", function (e) {
             e.target.closest(".col-12").remove();
+          });
+
+          cardBtnBuy.addEventListener("click", function (e) {
+            const cart = [];
+            const cartInStorage = JSON.parse(localStorage.getItem("cart"));
+            const bookObj = { title: book.title, price: book.price };
+            // console.log(bookObj);
+            if (cartInStorage) {
+              console.log(cartInStorage);
+              cartInStorage.push(bookObj);
+              localStorage.setItem("cart", JSON.stringify(cartInStorage));
+            } else {
+              cart.push(bookObj);
+              console.log(cart);
+              localStorage.setItem("cart", JSON.stringify(cart));
+            }
           });
         }
       });
