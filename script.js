@@ -26,7 +26,7 @@ window.onload = () => {
 
           const cardText = document.createElement("p");
           cardText.className = "card-text text-capitalize";
-          cardText.innerText = book.category;
+          cardText.innerText = book.price + "€";
 
           const cardBtn = document.createElement("button");
           cardBtn.className = "btn btn-outline-light";
