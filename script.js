@@ -8,7 +8,7 @@ window.onload = () => {
           const row = document.getElementById("book-cards");
 
           const col = document.createElement("div");
-          col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gy-3";
+          col.className = "col-12 col-sm-6 col-md-4 col-lg-3 gy-4";
 
           const card = document.createElement("div");
           card.className = "card h-100 text-bg-dark border-light";
