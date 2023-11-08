@@ -58,10 +58,23 @@ window.onload = () => {
           });
 
           cardBtnBuy.addEventListener("click", function (e) {
+            console.log(book);
+
+            const cartRender = document.getElementById("cart");
+            const list = document.createElement("ul");
+            list.className = "list-group";
+
             const cart = [];
             const cartInStorage = JSON.parse(localStorage.getItem("cart"));
             const bookObj = { title: book.title, price: book.price };
-            // console.log(bookObj);
+
+            const listElement = document.createElement("li");
+            listElement.className = "list-group-item list-group-item-dark";
+            listElement.innerText = `Titolo: ${book.title} Prezzo: ${book.price}`;
+
+            list.appendChild(listElement);
+            cartRender.appendChild(list);
+
             if (cartInStorage) {
               console.log(cartInStorage);
               cartInStorage.push(bookObj);
